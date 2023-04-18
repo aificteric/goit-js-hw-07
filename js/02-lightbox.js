@@ -27,7 +27,7 @@ function createItemsMarkup(items) {
     .join('');
 }
 
-//! Create a new SimpleLightbox instance and configure it to use the "alt" attribute for captions
+//! Creating a new SimpleLightbox instance and configuring it to use the "alt" attribute for captions
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
