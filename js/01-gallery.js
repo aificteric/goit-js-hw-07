@@ -29,7 +29,7 @@ function createGalleryMarkup(items) {
     .join('');
 }
 
-//* Function to handle click events on the gallery container element
+//! Function to handle click event on the gallery container element
 
 const onContainerClick = (clickEvent) => {
   clickEvent.preventDefault();
