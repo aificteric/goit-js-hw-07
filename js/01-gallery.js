@@ -15,7 +15,7 @@ galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 function createGalleryMarkup(items) {
   return items
     .map(({ preview, original, description }) => {
-      return `<li class="gallery__item">
+      return `<li class="gallery_item">
         <a class="gallery__link" href="${original.value}">
           <img
             class="gallery__image"
@@ -33,22 +33,19 @@ function createGalleryMarkup(items) {
 
 const onContainerClick = (clickEvent) => {
   clickEvent.preventDefault();
-  if (clickEvent.target.classList.contains('gallery')) return;
+  if (clickEvent.target.nodeName === 'IMG') return;
   const source = clickEvent.target.dataset.source;
-  // Create a new basicLightbox instance with the original image as its content
   const instance = basicLightbox.create(
     `<img src="${source}" width="800" height="600">`
   );
   instance.show();
 
   //! Close the lightbox instance on Esc key press
-  const onEscKeyDown = (event) => {
+  const closeOnEscKeyDown = (event) => {
     if (event.code === 'Escape') {
       instance.close();
-      window.removeEventListener('keydown', onEscKeyDown);
+      instance.element().removeEventListener('keydown', closeOnEscKeyDown);
     }
   };
-  window.addEventListener('keydown', onEscKeyDown);
+  instance.element().addEventListener('keydown', closeOnEscKeyDown);
 };
-
-galleryContainer.addEventListener('click', onContainerClick);
